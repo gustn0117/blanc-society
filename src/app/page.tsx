@@ -273,8 +273,8 @@ function Hero() {
       {/* Background image */}
       <div className="absolute inset-0">
         <Image
-          src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1200&q=80"
-          alt="Premium clinic interior"
+          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80"
+          alt="Modern building"
           fill
           className="object-cover"
           sizes="100vw"
@@ -414,8 +414,8 @@ function Problem() {
           <div className="relative">
             <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl shadow-black/10">
               <Image
-                src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1200&q=80"
-                alt="Skincare treatment"
+                src="https://images.unsplash.com/photo-1519999482648-25049ddd37b1?w=1920&q=80"
+                alt="Modern city buildings at dusk"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -475,8 +475,8 @@ function Results() {
           <div className="hidden lg:block relative w-[280px] mt-20">
             <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl border border-white/10">
               <Image
-                src="https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?w=1200&q=80"
-                alt="Analytics dashboard"
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1920&q=80"
+                alt="Business analytics dashboard"
                 fill
                 className="object-cover opacity-70"
                 sizes="280px"
@@ -504,8 +504,8 @@ function CaseStudy() {
           <div className="relative">
             <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl shadow-black/10">
               <Image
-                src="https://images.unsplash.com/photo-1648775507324-b48dd3791fa5?w=1200&q=80"
-                alt="Premium clinic"
+                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&q=80"
+                alt="Data analytics on screen"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -707,11 +707,24 @@ function WhyUs() {
     <section id="difference" className="py-24 sm:py-32 bg-bg-alt">
       <div className="max-w-7xl mx-auto px-6">
         {/* Differentiation */}
-        <SectionLabel>WHY BLANC SOCIETY</SectionLabel>
-        <h2 className="text-3xl sm:text-4xl font-extrabold mb-12 text-primary">
-          블랑 소사이어티가 <span className="text-accent">다른 이유</span>
-        </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-20">
+        <div className="grid lg:grid-cols-[1fr_1fr] gap-12 items-center mb-20">
+          <div>
+            <SectionLabel>WHY BLANC SOCIETY</SectionLabel>
+            <h2 className="text-3xl sm:text-4xl font-extrabold mb-6 text-primary">
+              블랑 소사이어티가 <span className="text-accent">다른 이유</span>
+            </h2>
+            <p className="text-primary-light text-sm leading-relaxed mb-8">실제 병원 운영 데이터를 기반으로 매출 구조를 설계합니다. 단순 광고 대행이 아닌, 함께 성장하는 파트너십을 지향합니다.</p>
+            <div className="relative aspect-[16/10] rounded-2xl overflow-hidden shadow-xl">
+              <Image
+                src="https://images.unsplash.com/photo-1573164574572-cb89e39749b4?w=1920&q=80"
+                alt="Business strategy meeting"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+            </div>
+          </div>
+          <div className="grid grid-cols-1 gap-5">
           {points.map((p, i) => (
             <div key={i} className="flex items-start gap-5 p-7 rounded-2xl bg-white border border-border shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:-translate-y-0.5 transition-all duration-300">
               <IconBox size="lg" color={p.color}>{p.icon}</IconBox>
@@ -721,6 +734,7 @@ function WhyUs() {
               </div>
             </div>
           ))}
+          </div>
         </div>
 
         {/* Consulting */}
@@ -750,9 +764,18 @@ function WhyUs() {
 /* ─── CLOSING + CTA ─── */
 function Closing() {
   return (
-    <section className="py-28 sm:py-36 bg-gradient-to-br from-[#0f172a] via-[#1e3a5f] to-[#312e81] text-white text-center relative overflow-hidden">
+    <section className="py-28 sm:py-36 text-white text-center relative overflow-hidden">
+      <div className="absolute inset-0">
+        <Image
+          src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1920&q=80"
+          alt="City skyline"
+          fill
+          className="object-cover"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0f172a]/90 via-[#1e3a5f]/85 to-[#312e81]/90" />
+      </div>
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-accent/[0.06] blur-[150px]" />
-      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full bg-violet/[0.08] blur-[100px]" />
       <div className="relative max-w-3xl mx-auto px-6">
         <div className="flex justify-center mb-8">
           <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
