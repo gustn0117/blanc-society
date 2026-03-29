@@ -280,51 +280,30 @@ function Hero() {
           sizes="100vw"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20" />
+        <div className="absolute inset-0 bg-black/70" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6 py-32 w-full">
-        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-16 items-center">
-          <div>
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-[1.5px] bg-white/40 rounded-full" />
-              <span className="text-[11px] font-semibold tracking-[0.2em] text-white/60 uppercase">PREMIUM MARKETING PROPOSAL</span>
-            </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.15] mb-8 text-white">
-              노출이 아니라,<br />
-              <span className="bg-gradient-to-r from-blue-400 to-blue-300 bg-clip-text text-transparent">매출이 올라가는 구조</span>를<br />설계합니다
-            </h1>
-            <p className="text-white/60 text-base sm:text-lg max-w-lg mb-12 leading-relaxed">
-              단순 광고가 아닌,<br />내원 → 결제 → 재방문 구조를 설계하는 피부과 전문 마케팅
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <a href="#contact" className="inline-flex items-center gap-2.5 px-8 py-4 bg-white text-primary font-bold text-sm rounded-full hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(255,255,255,0.15)] transition-all duration-300">
-                무료 상담 신청 <IconArrowRight />
-              </a>
-              <a href="#results" className="inline-flex items-center gap-2 px-7 py-4 text-sm text-white/90 font-medium border border-white/25 rounded-full hover:bg-white/10 hover:border-white/40 transition-all duration-300">성과 확인하기</a>
-            </div>
-          </div>
-
-          {/* Right side - key stats preview */}
-          <div className="hidden lg:flex flex-col gap-5">
-            {[
-              { icon: <IconChart className="w-5 h-5" />, value: "4억", label: "원대 매출 달성", color: "text-blue-400" },
-              { icon: <IconDatabase className="w-5 h-5" />, value: "12,000", label: "명 고객 DB 구축", color: "text-emerald-400" },
-              { icon: <IconStar className="w-5 h-5" />, value: "1,900+", label: "건 네이버 리뷰", color: "text-amber-400" },
-            ].map((s, i) => (
-              <div key={i} className="bg-white/[0.08] backdrop-blur-md rounded-2xl p-6 border border-white/[0.12] hover:bg-white/[0.14] transition-all duration-300 flex items-center gap-5">
-                <div className={`w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center ${s.color}`}>{s.icon}</div>
-                <div>
-                  <p className="text-3xl font-extrabold text-white">{s.value}</p>
-                  <p className="text-sm text-white/50">{s.label}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+      <div className="relative max-w-4xl mx-auto px-6 py-32 w-full text-center">
+        <div className="flex items-center justify-center gap-3 mb-8">
+          <div className="w-10 h-[1.5px] bg-white/40 rounded-full" />
+          <span className="text-[11px] font-semibold tracking-[0.2em] text-white/60 uppercase">PREMIUM MARKETING PROPOSAL</span>
+          <div className="w-10 h-[1.5px] bg-white/40 rounded-full" />
+        </div>
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.15] mb-8 text-white">
+          노출이 아니라,<br />
+          <span className="bg-gradient-to-r from-blue-400 to-blue-300 bg-clip-text text-transparent">매출이 올라가는 구조</span>를<br />설계합니다
+        </h1>
+        <p className="text-white/55 text-base sm:text-lg max-w-lg mx-auto mb-12 leading-relaxed">
+          단순 광고가 아닌,<br />내원 → 결제 → 재방문 구조를 설계하는 피부과 전문 마케팅
+        </p>
+        <div className="flex flex-wrap justify-center gap-4">
+          <a href="#contact" className="inline-flex items-center gap-2.5 px-8 py-4 bg-white text-primary font-bold text-sm rounded-full hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(255,255,255,0.15)] transition-all duration-300">
+            무료 상담 신청 <IconArrowRight />
+          </a>
+          <a href="#results" className="inline-flex items-center gap-2 px-7 py-4 text-sm text-white/90 font-medium border border-white/25 rounded-full hover:bg-white/10 hover:border-white/40 transition-all duration-300">성과 확인하기</a>
         </div>
 
-        <div className="mt-20 pt-8 border-t border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-8">
+        <div className="mt-24 pt-8 border-t border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-8">
           {[
             { label: "제안 대상", value: "개인 운영 피부과 원장님" },
             { label: "제안 주체", value: "블랑 소사이어티 | 대표 정혜원" },
