@@ -193,10 +193,8 @@ function Nav() {
   const links = [
     { href: "#problem", label: "문제 인식" },
     { href: "#results", label: "성과" },
-    { href: "#case", label: "사례" },
     { href: "#service", label: "서비스" },
     { href: "#funnel", label: "퍼널" },
-    { href: "#difference", label: "차별점" },
     { href: "#contact", label: "문의" },
   ];
   return (
@@ -205,35 +203,24 @@ function Nav() {
         <a href="#" className="flex items-center">
           <Image src="/images/logo-text-white-cropped.png" alt="BLANC SOCIETY" width={1523} height={188} className="invert h-7 w-auto" />
         </a>
-
         <div className="hidden lg:flex items-center gap-7">
           {links.map((l) => (
-            <a key={l.href} href={l.href} className="text-[13px] text-primary-light hover:text-accent transition-colors font-medium">
-              {l.label}
-            </a>
+            <a key={l.href} href={l.href} className="text-[13px] text-primary-light hover:text-accent transition-colors font-medium">{l.label}</a>
           ))}
-          <a href="#contact" className="ml-2 px-5 py-2 text-[13px] font-semibold rounded-full bg-accent text-white hover:bg-accent-dark transition">
-            상담 문의
-          </a>
+          <a href="#contact" className="ml-2 px-5 py-2 text-[13px] font-semibold rounded-full bg-accent text-white hover:bg-accent-dark transition">상담 문의</a>
         </div>
-
         <button className="lg:hidden text-primary-light" onClick={() => setOpen(!open)} aria-label="메뉴">
           <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2">
             {open ? <path d="M6 6l10 10M6 16L16 6" /> : <path d="M4 6h14M4 11h14M4 16h14" />}
           </svg>
         </button>
       </div>
-
       {open && (
-        <div className="lg:hidden bg-white/98 backdrop-blur-xl border-t border-border px-5 py-4 space-y-2">
+        <div className="lg:hidden bg-white backdrop-blur-xl border-t border-border px-5 py-4 space-y-2">
           {links.map((l) => (
-            <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="block text-sm text-primary-light hover:text-accent py-1.5 font-medium">
-              {l.label}
-            </a>
+            <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="block text-sm text-primary-light hover:text-accent py-1.5 font-medium">{l.label}</a>
           ))}
-          <a href="#contact" onClick={() => setOpen(false)} className="inline-block mt-2 px-5 py-2 text-sm font-semibold rounded-full bg-accent text-white">
-            상담 문의
-          </a>
+          <a href="#contact" onClick={() => setOpen(false)} className="inline-block mt-2 px-5 py-2 text-sm font-semibold rounded-full bg-accent text-white">상담 문의</a>
         </div>
       )}
     </nav>
@@ -241,13 +228,11 @@ function Nav() {
 }
 
 /* ─── SECTION LABEL ─── */
-function SectionLabel({ children }: { children: React.ReactNode }) {
+function SectionLabel({ children, center }: { children: React.ReactNode; center?: boolean }) {
   return (
-    <div className="flex items-center gap-3 mb-4">
+    <div className={`flex items-center gap-3 mb-4 ${center ? "justify-center" : ""}`}>
       <div className="w-8 h-[2px] bg-accent rounded-full" />
-      <span className="text-[12px] font-semibold tracking-[0.15em] text-accent uppercase">
-        {children}
-      </span>
+      <span className="text-[12px] font-semibold tracking-[0.15em] text-accent uppercase">{children}</span>
     </div>
   );
 }
@@ -255,56 +240,68 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 /* ─── CARD ─── */
 function Card({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={`bg-card border border-border rounded-2xl shadow-[0_1px_3px_rgba(0,0,0,0.06)] hover:shadow-md transition-shadow ${className}`}>
-      {children}
-    </div>
+    <div className={`bg-card border border-border rounded-2xl shadow-[0_1px_3px_rgba(0,0,0,0.06)] hover:shadow-md transition-shadow ${className}`}>{children}</div>
   );
 }
 
 /* ─── ICON BOX ─── */
-function IconBox({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="w-10 h-10 rounded-xl bg-accent-bg flex items-center justify-center text-accent shrink-0">
-      {children}
-    </div>
-  );
+function IconBox({ children, size = "md", color = "accent" }: { children: React.ReactNode; size?: "sm" | "md" | "lg"; color?: "accent" | "warm" | "emerald" | "rose" | "violet" }) {
+  const sizeClass = size === "lg" ? "w-14 h-14 rounded-2xl" : size === "sm" ? "w-8 h-8 rounded-lg" : "w-10 h-10 rounded-xl";
+  const colorMap = {
+    accent: "bg-accent-bg text-accent",
+    warm: "bg-warm-bg text-warm-dark",
+    emerald: "bg-emerald-bg text-emerald",
+    rose: "bg-rose-bg text-rose",
+    violet: "bg-violet-bg text-violet",
+  };
+  return <div className={`${sizeClass} ${colorMap[color]} flex items-center justify-center shrink-0`}>{children}</div>;
 }
 
 /* ─── HERO ─── */
 function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center pt-16 bg-gradient-to-br from-[#f8faff] via-white to-[#f0f4ff]">
+    <section className="relative min-h-screen flex items-center pt-16 bg-gradient-to-br from-[#f8faff] via-white to-[#f0f4ff] overflow-hidden">
       <div className="absolute top-1/4 right-0 w-[400px] h-[400px] rounded-full bg-accent/[0.06] blur-[100px]" />
       <div className="absolute bottom-1/4 left-0 w-[300px] h-[300px] rounded-full bg-[#818cf8]/[0.04] blur-[80px]" />
 
       <div className="relative max-w-6xl mx-auto px-5 py-20 w-full">
-        <SectionLabel>PREMIUM MARKETING PROPOSAL</SectionLabel>
+        <div className="grid lg:grid-cols-[1fr_380px] gap-12 items-center">
+          <div>
+            <SectionLabel>PREMIUM MARKETING PROPOSAL</SectionLabel>
+            <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold leading-tight mt-6 mb-6 text-primary">
+              노출이 아니라,<br />
+              <span className="text-accent">매출이 올라가는 구조</span>를<br />설계합니다
+            </h1>
+            <p className="text-primary-light text-base sm:text-lg max-w-lg mt-4 mb-10 leading-relaxed">
+              단순 광고가 아닌,<br />내원 → 결제 → 재방문 구조를 설계하는 피부과 전문 마케팅
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <a href="#contact" className="inline-flex items-center gap-2 px-7 py-3.5 bg-accent text-white font-bold text-sm rounded-full hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/25 transition-all">
+                무료 상담 신청 <IconArrowRight />
+              </a>
+              <a href="#results" className="inline-flex items-center gap-2 px-6 py-3.5 text-sm text-accent font-medium border border-accent/30 rounded-full hover:bg-accent-bg transition">성과 확인하기</a>
+            </div>
+          </div>
 
-        <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold leading-[1.25] mt-6 mb-6 text-primary">
-          노출이 아니라,
-          <br />
-          <span className="text-accent">매출이 올라가는 구조</span>를
-          <br />
-          설계합니다
-        </h1>
-
-        <p className="text-primary-light text-base sm:text-lg max-w-lg mt-4 mb-10 leading-relaxed">
-          단순 광고가 아닌,
-          <br />
-          내원 → 결제 → 재방문 구조를 설계하는 피부과 전문 마케팅
-        </p>
-
-        <div className="flex flex-wrap gap-3">
-          <a href="#contact" className="inline-flex items-center gap-2 px-7 py-3.5 bg-accent text-white font-bold text-sm rounded-full hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/25 transition-all">
-            무료 상담 신청
-            <IconArrowRight />
-          </a>
-          <a href="#results" className="inline-flex items-center gap-2 px-6 py-3.5 text-sm text-accent font-medium border border-accent/30 rounded-full hover:bg-accent-bg transition">
-            성과 확인하기
-          </a>
+          {/* Right side - key stats preview */}
+          <div className="hidden lg:flex flex-col gap-4">
+            {[
+              { icon: <IconChart className="w-5 h-5" />, value: "4억", label: "원대 매출 달성" },
+              { icon: <IconDatabase className="w-5 h-5" />, value: "12,000", label: "명 고객 DB 구축" },
+              { icon: <IconStar className="w-5 h-5" />, value: "1,900+", label: "건 네이버 리뷰" },
+            ].map((s, i) => (
+              <Card key={i} className="p-5 flex items-center gap-4">
+                <IconBox>{s.icon}</IconBox>
+                <div>
+                  <p className="text-2xl font-extrabold text-primary">{s.value}</p>
+                  <p className="text-sm text-primary-light">{s.label}</p>
+                </div>
+              </Card>
+            ))}
+          </div>
         </div>
 
-        <div className="mt-20 pt-8 border-t border-border grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div className="mt-16 pt-8 border-t border-border grid grid-cols-1 sm:grid-cols-3 gap-6">
           {[
             { label: "제안 대상", value: "개인 운영 피부과 원장님" },
             { label: "제안 주체", value: "블랑 소사이어티 | 대표 정혜원" },
@@ -323,26 +320,26 @@ function Hero() {
 
 /* ─── CONCERNS ─── */
 function Concerns() {
-  const items = [
-    { icon: <IconMonitor className="w-5 h-5" />, text: '"블로그 맡겼는데\n효과를 모르겠다"' },
-    { icon: <IconCurrency className="w-5 h-5" />, text: '"광고비는 쓰는데\n환자는 늘지 않는다"' },
-    { icon: <IconUser className="w-5 h-5" />, text: '"직원 두고 마케팅 하기엔\n부담된다"' },
-    { icon: <IconBuilding className="w-5 h-5" />, text: '"네트워크는 싫지만 혼자\n하자니 막막하다"' },
+  const items: { icon: React.ReactNode; text: string; color: "accent" | "warm" | "rose" | "violet" }[] = [
+    { icon: <IconMonitor className="w-6 h-6" />, text: "블로그 맡겼는데 효과를 모르겠다", color: "accent" },
+    { icon: <IconCurrency className="w-6 h-6" />, text: "광고비는 쓰는데 환자는 늘지 않는다", color: "warm" },
+    { icon: <IconUser className="w-6 h-6" />, text: "직원 두고 마케팅 하기엔 부담된다", color: "rose" },
+    { icon: <IconBuilding className="w-6 h-6" />, text: "네트워크는 싫지만 혼자 하자니 막막하다", color: "violet" },
   ];
   return (
     <section className="py-20 sm:py-28 bg-bg-alt">
       <div className="max-w-6xl mx-auto px-5">
-        <SectionLabel>DIRECTOR&apos;S CONCERNS</SectionLabel>
-        <h2 className="text-3xl sm:text-4xl font-extrabold mb-10 text-primary">
+        <SectionLabel center>DIRECTOR&apos;S CONCERNS</SectionLabel>
+        <h2 className="text-3xl sm:text-4xl font-extrabold mb-12 text-primary text-center">
           이런 <span className="text-accent">고민</span> 있으신가요?
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {items.map((item, i) => (
-            <Card key={i} className="p-6 sm:p-7 flex items-start gap-4">
-              <IconBox>{item.icon}</IconBox>
-              <p className="text-[15px] sm:text-base font-semibold whitespace-pre-line leading-relaxed text-primary">
-                {item.text}
-              </p>
+            <Card key={i} className="p-6 text-center">
+              <div className="flex justify-center mb-4">
+                <IconBox size="lg" color={item.color}>{item.icon}</IconBox>
+              </div>
+              <p className="text-[15px] font-semibold leading-relaxed text-primary">&ldquo;{item.text}&rdquo;</p>
             </Card>
           ))}
         </div>
@@ -354,39 +351,40 @@ function Concerns() {
 /* ─── PROBLEM ─── */
 function Problem() {
   const problems = [
-    "광고는 하지만 '결제까지 이어지는 구조'가 없음",
-    "채널은 많은데, KPI와 책임 소재가 불명확함",
-    "전담 인력 운영 부담(채용·교육·관리)으로 실행력 저하",
-    "네트워크는 지양하지만, 혼자 하기엔 전략·리소스 모두 부족",
+    { title: "구조 부재", desc: "광고는 하지만 '결제까지 이어지는 구조'가 없음" },
+    { title: "KPI 불명확", desc: "채널은 많은데, KPI와 책임 소재가 불명확함" },
+    { title: "실행력 저하", desc: "전담 인력 운영 부담(채용·교육·관리)으로 실행력 저하" },
+    { title: "리소스 부족", desc: "네트워크는 지양하지만, 혼자 하기엔 전략·리소스 모두 부족" },
   ];
   return (
     <section id="problem" className="py-20 sm:py-28">
       <div className="max-w-6xl mx-auto px-5">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-20 items-center">
           <div>
             <SectionLabel>PROBLEM RECOGNITION</SectionLabel>
             <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight mb-5 text-primary">
-              많은 병원이
-              <br />
-              <span className="text-accent">실패</span>하는 이유
+              많은 병원이<br /><span className="text-accent">실패</span>하는 이유
             </h2>
-            <p className="text-primary-light leading-relaxed text-[15px]">
-              단순한 광고 지출이 아닌,
-              <br />
-              근본적인 매출 구조의 부재가
-              <br />
-              지속적인 성장을 가로막습니다.
+            <p className="text-primary-light leading-relaxed text-[15px] mb-8">
+              단순한 광고 지출이 아닌,<br />근본적인 매출 구조의 부재가<br />지속적인 성장을 가로막습니다.
             </p>
+            <a href="#service" className="inline-flex items-center gap-2 text-sm text-accent font-semibold hover:underline">
+              해결 방법 보기 <IconArrowRight />
+            </a>
           </div>
-          <div className="space-y-3">
-            {problems.map((p, i) => (
-              <Card key={i} className="p-5 flex items-center gap-4">
-                <div className="w-9 h-9 rounded-full bg-accent/10 flex items-center justify-center text-accent text-sm font-bold shrink-0">
-                  {i + 1}
-                </div>
-                <p className="text-[14px] sm:text-[15px] font-medium text-primary">{p}</p>
-              </Card>
-            ))}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {problems.map((p, i) => {
+              const colors = ["bg-rose-bg text-rose", "bg-warm-bg text-warm-dark", "bg-violet-bg text-violet", "bg-accent-bg text-accent"];
+              return (
+                <Card key={i} className="p-5">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className={`w-8 h-8 rounded-lg ${colors[i]} flex items-center justify-center text-sm font-bold shrink-0`}>{i + 1}</div>
+                    <h3 className="font-bold text-sm text-primary">{p.title}</h3>
+                  </div>
+                  <p className="text-[13px] text-primary-light leading-relaxed">{p.desc}</p>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -397,31 +395,30 @@ function Problem() {
 /* ─── RESULTS ─── */
 function Results() {
   const stats = [
-    { icon: <IconChart className="w-5 h-5" />, label: "매출 성장", value: "4억", unit: "원대", desc: "개원 첫 달 1억 9천만 원 → 1년 6개월 후 달성" },
-    { icon: <IconDatabase className="w-5 h-5" />, label: "고객 DB", value: "12,000", unit: "명", desc: "체계적인 고객 데이터베이스 구축 및 지속적 관리 시스템 확립" },
-    { icon: <IconUsers className="w-5 h-5" />, label: "의료진 확장", value: "3인", unit: " 체제", desc: "부원장 3인 추가 영입으로 안정적인 진료 시스템 구축" },
-    { icon: <IconStar className="w-5 h-5" />, label: "평판 자산", value: "1,900", unit: "+", desc: "실제 내원 환자 기반의 네이버 영수증 리뷰 확보" },
+    { icon: <IconChart className="w-6 h-6" />, label: "매출 성장", value: "4억", unit: "원대", desc: "개원 첫 달 1억 9천만 원 → 1년 6개월 후 달성" },
+    { icon: <IconDatabase className="w-6 h-6" />, label: "고객 DB", value: "12,000", unit: "명", desc: "체계적인 고객 데이터베이스 구축 및 관리" },
+    { icon: <IconUsers className="w-6 h-6" />, label: "의료진 확장", value: "3인", unit: " 체제", desc: "부원장 3인 추가 영입, 안정적 진료 시스템" },
+    { icon: <IconStar className="w-6 h-6" />, label: "평판 자산", value: "1,900", unit: "+", desc: "실제 내원 환자 기반 네이버 영수증 리뷰" },
   ];
   return (
-    <section id="results" className="py-20 sm:py-28 bg-bg-alt">
-      <div className="max-w-6xl mx-auto px-5">
-        <SectionLabel>PROVEN RESULTS</SectionLabel>
-        <h2 className="text-3xl sm:text-4xl font-extrabold mb-10 text-primary">
-          실제 성과: <span className="text-accent">데이터로 증명된 결과</span>
+    <section id="results" className="py-20 sm:py-28 text-white relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-[#1e293b] via-[#0f172a] to-[#1e3a5f]" />
+      <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full bg-white/[0.05] blur-[80px]" />
+      <div className="relative max-w-6xl mx-auto px-5">
+        <SectionLabel><span className="text-warm">PROVEN RESULTS</span></SectionLabel>
+        <h2 className="text-3xl sm:text-4xl font-extrabold mb-12">
+          실제 성과: <span className="text-warm">데이터로 증명된 결과</span>
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {stats.map((s, i) => (
-            <Card key={i} className="p-7 sm:p-8 text-center">
-              <div className="flex justify-center mb-3">
-                <IconBox>{s.icon}</IconBox>
-              </div>
-              <p className="text-[12px] text-accent font-semibold tracking-wide mb-2">{s.label}</p>
-              <p className="text-4xl sm:text-5xl font-extrabold text-primary">
-                {s.value}
-                <span className="text-lg font-normal text-primary-light">{s.unit}</span>
+            <div key={i} className="bg-white/[0.07] backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/[0.12] transition">
+              <div className="w-12 h-12 rounded-xl bg-warm/20 flex items-center justify-center text-warm mb-4">{s.icon}</div>
+              <p className="text-xs text-warm tracking-wide font-semibold mb-1">{s.label}</p>
+              <p className="text-3xl sm:text-4xl font-extrabold">
+                {s.value}<span className="text-base font-normal text-white/60">{s.unit}</span>
               </p>
-              <p className="text-sm text-primary-light mt-3 leading-relaxed">{s.desc}</p>
-            </Card>
+              <p className="text-sm text-white/50 mt-2 leading-relaxed">{s.desc}</p>
+            </div>
           ))}
         </div>
       </div>
@@ -434,81 +431,66 @@ function CaseStudy() {
   return (
     <section id="case" className="py-20 sm:py-28">
       <div className="max-w-6xl mx-auto px-5">
-        <SectionLabel>CASE STUDY</SectionLabel>
-        <h2 className="text-3xl sm:text-4xl font-extrabold mb-10 text-primary">
-          <span className="text-accent">프리미엄 확장</span> 사례
-        </h2>
-
-        <div className="grid lg:grid-cols-[1fr_60px_1fr] gap-4 items-stretch mb-6">
-          <Card className="p-6 sm:p-7">
-            <h3 className="text-base font-bold mb-4 pb-4 border-b border-border text-primary">BEFORE (초기 장비)</h3>
-            <ul className="space-y-2.5">
-              {["올리지오 (Oligio)", "인모드 (Inmode)", "슈링크 (Shurink)"].map((item) => (
-                <li key={item} className="flex items-center gap-2.5 text-primary-light text-sm">
-                  <IconCheck className="w-3.5 h-3.5 text-accent" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </Card>
-
-          <div className="hidden lg:flex items-center justify-center text-3xl text-accent/50">
-            <IconArrowRight className="w-8 h-8" />
-          </div>
-          <div className="lg:hidden text-accent/50 flex justify-center py-1">
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
-            </svg>
-          </div>
-
-          <Card className="p-6 sm:p-7 border-accent/20!">
-            <h3 className="text-base font-bold mb-4 pb-4 border-b border-border text-primary">AFTER (확장 장비)</h3>
-            <div className="grid grid-cols-2 gap-2.5">
-              {["울쎄라 (Ultherapy)", "티타늄 (Titanium)", "써마지 (Thermage)", "리팟 (Repot)"].map((item) => (
-                <div key={item} className="flex items-center gap-2 text-primary-light text-sm">
-                  <span className="text-accent text-xs font-bold">+</span>
-                  {item}
-                </div>
-              ))}
-            </div>
-          </Card>
-        </div>
-
-        <Card className="p-5 flex flex-col sm:flex-row items-start sm:items-center gap-3">
-          <span className="text-[12px] font-bold text-accent bg-accent/10 px-3.5 py-1.5 rounded-full shrink-0">핵심 결과</span>
+        <div className="grid lg:grid-cols-[1fr_1fr] gap-10 items-start">
           <div>
-            <p className="text-[15px] font-bold text-primary">고가 리프팅 중심 병원으로 포지셔닝 전환 성공</p>
-            <p className="text-[13px] text-primary-light mt-0.5">객단가 상승 + 브랜드 인식 상승 + 매출 구조 안정화</p>
+            <SectionLabel>CASE STUDY</SectionLabel>
+            <h2 className="text-3xl sm:text-4xl font-extrabold mb-6 text-primary">
+              <span className="text-accent">프리미엄 확장</span> 사례
+            </h2>
+            <Card className="p-6 mb-4">
+              <h3 className="text-sm font-bold mb-4 pb-3 border-b border-border text-primary-light">BEFORE (초기 장비)</h3>
+              <div className="space-y-2">
+                {["올리지오 (Oligio)", "인모드 (Inmode)", "슈링크 (Shurink)"].map((item) => (
+                  <div key={item} className="flex items-center gap-2.5 text-primary-light text-sm">
+                    <IconCheck className="w-3.5 h-3.5 text-accent" />{item}
+                  </div>
+                ))}
+              </div>
+            </Card>
+            <div className="flex justify-center py-2">
+              <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
+              </svg>
+            </div>
+            <Card className="p-6 border-accent/20!">
+              <h3 className="text-sm font-bold mb-4 pb-3 border-b border-border text-accent">AFTER (확장 장비)</h3>
+              <div className="grid grid-cols-2 gap-2">
+                {["울쎄라 (Ultherapy)", "티타늄 (Titanium)", "써마지 (Thermage)", "리팟 (Repot)"].map((item) => (
+                  <div key={item} className="flex items-center gap-2 text-primary text-sm font-medium">
+                    <span className="text-accent font-bold">+</span>{item}
+                  </div>
+                ))}
+              </div>
+            </Card>
           </div>
-        </Card>
-      </div>
-    </section>
-  );
-}
 
-/* ─── KEY MESSAGE ─── */
-function KeyMessage() {
-  return (
-    <section className="py-20 sm:py-28 bg-bg-alt">
-      <div className="max-w-4xl mx-auto px-5 text-center">
-        <SectionLabel><span className="mx-auto">KEY MESSAGE</span></SectionLabel>
-        <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight mt-6 mb-6 text-primary">
-          우리는 &apos;환자를 늘리는 것&apos;이 아니라
-          <br />
-          <span className="text-accent">&apos;매출이 올라가는 구조&apos;</span>를 설계합니다
-        </h2>
-        <div className="w-12 h-[1px] bg-border mx-auto my-8" />
-        <div className="grid sm:grid-cols-2 gap-4 mt-8">
-          <Card className="p-6 sm:p-7 text-left">
-            <div className="mb-3"><IconBox><IconFunnel className="w-5 h-5" /></IconBox></div>
-            <p className="text-primary-light text-sm mb-1">단순 노출이 아닌</p>
-            <p className="font-bold text-base text-primary">내원 → 결제 → 재방문<br />퍼널 구축</p>
-          </Card>
-          <Card className="p-6 sm:p-7 text-left">
-            <div className="mb-3"><IconBox><IconChart className="w-5 h-5" /></IconBox></div>
-            <p className="text-primary-light text-sm mb-1">실제 병원 운영의</p>
-            <p className="font-bold text-base text-primary">차트·결제 데이터를<br />기반으로 한 설계</p>
-          </Card>
+          <div className="lg:pt-16">
+            <div className="bg-accent-bg rounded-2xl p-8">
+              <h3 className="text-lg font-extrabold text-primary mb-2">핵심 결과</h3>
+              <p className="text-2xl sm:text-3xl font-extrabold text-accent mb-4">고가 리프팅 중심 병원으로<br />포지셔닝 전환 성공</p>
+              <div className="space-y-3 mt-6">
+                {["객단가 상승으로 매출 구조 안정화", "프리미엄 브랜드 인식 확립", "고가 시술 중심 환자 유입 증가"].map((t) => (
+                  <div key={t} className="flex items-start gap-2">
+                    <IconCheck className="w-4 h-4 text-accent mt-0.5 shrink-0" />
+                    <p className="text-sm text-primary-light">{t}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-6 grid grid-cols-2 gap-4">
+              <Card className="p-5 text-center">
+                <div className="flex justify-center mb-2"><IconBox><IconFunnel className="w-5 h-5" /></IconBox></div>
+                <p className="text-primary-light text-xs mb-1">단순 노출이 아닌</p>
+                <p className="font-bold text-sm text-primary">내원→결제→재방문<br />퍼널 구축</p>
+              </Card>
+              <Card className="p-5 text-center">
+                <div className="flex justify-center mb-2"><IconBox><IconChart className="w-5 h-5" /></IconBox></div>
+                <p className="text-primary-light text-xs mb-1">실제 병원 운영의</p>
+                <p className="font-bold text-sm text-primary">차트·결제 데이터<br />기반 설계</p>
+              </Card>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -517,113 +499,37 @@ function KeyMessage() {
 
 /* ─── SERVICE ─── */
 function Service() {
-  const services1 = [
-    { icon: <IconClipboard className="w-5 h-5" />, title: "매출형 이벤트 설계", items: ["월별 이벤트 + 게릴라 이벤트", "객단가 & 회전율 동시 설계"] },
-    { icon: <IconPencil className="w-5 h-5" />, title: "네이버 블로그 운영", items: ["키워드 기반 콘텐츠 전략", "실제 사례형 (매출 연결 핵심)"] },
-    { icon: <IconGlobe className="w-5 h-5" />, title: "지역 커뮤니티 장악", items: ["지역 맘카페, 뷰티 카페 침투", "실제 내원 유도 집중 운영"] },
-    { icon: <IconPhone className="w-5 h-5" />, title: "타겟 인스타그램 광고", items: ["핵심 타겟 고객층 맞춤형 노출", "시술별 반응 데이터 기반 최적화"] },
-    { icon: <IconMap className="w-5 h-5" />, title: "네이버 플레이스 최적화", items: ["순위 최적화 + 정보 품질 관리", "리뷰·사진 등 신뢰 자산 설계"] },
-    { icon: <IconTarget className="w-5 h-5" />, title: "오프라인 전환 설계", items: ["상권 맞춤형 전단지 제작 및 배포", "지역 상권 타겟 오프라인 브랜딩"] },
+  const allServices: { icon: React.ReactNode; title: string; items: string[]; color: "accent" | "warm" | "emerald" | "rose" | "violet" }[] = [
+    { icon: <IconClipboard className="w-5 h-5" />, title: "매출형 이벤트 설계", items: ["월별 이벤트 + 게릴라 이벤트", "객단가 & 회전율 동시 설계"], color: "warm" },
+    { icon: <IconPencil className="w-5 h-5" />, title: "네이버 블로그 운영", items: ["키워드 기반 콘텐츠 전략", "실제 사례형 (매출 연결 핵심)"], color: "emerald" },
+    { icon: <IconGlobe className="w-5 h-5" />, title: "지역 커뮤니티 장악", items: ["지역 맘카페, 뷰티 카페 침투", "실제 내원 유도 집중 운영"], color: "violet" },
+    { icon: <IconPhone className="w-5 h-5" />, title: "타겟 인스타그램 광고", items: ["핵심 타겟 고객층 맞춤형 노출", "시술별 반응 데이터 기반 최적화"], color: "rose" },
+    { icon: <IconMap className="w-5 h-5" />, title: "네이버 플레이스 최적화", items: ["순위 최적화 + 정보 품질 관리", "리뷰·사진 등 신뢰 자산 설계"], color: "accent" },
+    { icon: <IconTarget className="w-5 h-5" />, title: "오프라인 전환 설계", items: ["상권 맞춤형 전단지 제작 및 배포", "지역 상권 타겟 오프라인 브랜딩"], color: "emerald" },
+    { icon: <IconStar className="w-5 h-5" />, title: "네이버 리뷰 관리", items: ["악성 리뷰 대응 및 삭제", "리뷰 구조 설계 (자연 유입 증가)"], color: "warm" },
+    { icon: <IconSearch className="w-5 h-5" />, title: "키워드 선점 전략", items: ['"○○동 피부과 리프팅"', "지역 + 시술 검색 점유"], color: "accent" },
+    { icon: <IconChat className="w-5 h-5" />, title: "카카오톡 채널 운영", items: ["상담 전환율 상승 구조 설계", "재방문 유도 메시지 운영"], color: "violet" },
+    { icon: <IconUser className="w-5 h-5" />, title: "체험단 운영 (월 3명)", items: ["실제 후기 콘텐츠 확보", "블로그 + 카페 확산"], color: "rose" },
   ];
-  const services2 = [
-    { icon: <IconStar className="w-5 h-5" />, title: "네이버 리뷰 관리", items: ["악성 리뷰 대응 및 삭제", "리뷰 구조 설계 (자연 유입 증가)"] },
-    { icon: <IconSearch className="w-5 h-5" />, title: "키워드 선점 전략", items: ['"○○동 피부과 리프팅"', "지역 + 시술 검색 점유"] },
-    { icon: <IconChat className="w-5 h-5" />, title: "카카오톡 채널 운영", items: ["상담 전환율 상승 구조 설계", "재방문 유도 메시지 운영"] },
-    { icon: <IconUser className="w-5 h-5" />, title: "체험단 운영 (월 3명)", items: ["실제 후기 콘텐츠 확보", "블로그 + 카페 확산"] },
-  ];
-
-  const renderServiceCard = (s: { icon: React.ReactNode; title: string; items: string[] }, i: number) => (
-    <Card key={i} className="p-6">
-      <div className="flex items-center gap-3 mb-4 pb-3 border-b border-border">
-        <IconBox>{s.icon}</IconBox>
-        <h3 className="font-bold text-[15px] text-primary">{s.title}</h3>
-      </div>
-      <ul className="space-y-2">
-        {s.items.map((item, j) => (
-          <li key={j} className="flex items-start gap-2 text-[13px] text-primary-light">
-            <IconCheck className="w-3.5 h-3.5 text-accent mt-[2px] shrink-0" />
-            {item}
-          </li>
-        ))}
-      </ul>
-    </Card>
-  );
 
   return (
-    <section id="service" className="py-20 sm:py-28">
+    <section id="service" className="py-20 sm:py-28 bg-bg-alt">
       <div className="max-w-6xl mx-auto px-5">
-        <SectionLabel>MARKETING SCOPE</SectionLabel>
-        <h2 className="text-3xl sm:text-4xl font-extrabold mb-3 text-primary">
+        <SectionLabel center>MARKETING SCOPE</SectionLabel>
+        <h2 className="text-3xl sm:text-4xl font-extrabold mb-3 text-primary text-center">
           마케팅 진행 범위: <span className="text-accent">매출형 채널 운영</span>
         </h2>
-        <p className="text-primary-light text-sm mb-10">핵심은 유입이 아닌 결제 구조 설계입니다</p>
+        <p className="text-primary-light text-sm mb-12 text-center">핵심은 유입이 아닌 결제 구조 설계입니다</p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-          {services1.map(renderServiceCard)}
-        </div>
-
-        <h3 className="text-2xl font-bold mb-6 mt-14 text-primary">
-          <span className="text-accent">전환·평판 강화</span>
-        </h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {services2.map(renderServiceCard)}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─── FUNNEL ─── */
-function Funnel() {
-  const steps = [
-    { label: "인지/흥미", sub: "노출" },
-    { label: "유입", sub: "문의/예약" },
-    { label: "내원", sub: "방문 경험" },
-    { label: "상담", sub: "패키지 제안" },
-    { label: "결제", sub: "매출 전환" },
-    { label: "사후관리", sub: "만족도 제고" },
-    { label: "재방문", sub: "리뷰/추천" },
-  ];
-  const strategies = [
-    { icon: <IconMagnet className="w-5 h-5" />, title: "유입 강화", items: ["키워드 콘텐츠 배포", "지역 커뮤니티 장악", "인스타 맞춤 광고"] },
-    { icon: <IconChat className="w-5 h-5" />, title: "전환율 향상", items: ["카카오톡 채널 세팅", "고효율 상담 스크립트"] },
-    { icon: <IconCreditCard className="w-5 h-5" />, title: "결제 최적화", items: ["객단가 상승 패키지 구성", "전환율 극대화 가격전략"] },
-    { icon: <IconRefresh className="w-5 h-5" />, title: "재방문 유도", items: ["자연유입 증가 리뷰 설계", "자동화된 리콜 메시지"] },
-  ];
-
-  return (
-    <section id="funnel" className="py-20 sm:py-28 bg-bg-alt">
-      <div className="max-w-6xl mx-auto px-5">
-        <SectionLabel>SALES STRUCTURE FUNNEL</SectionLabel>
-        <h2 className="text-3xl sm:text-4xl font-extrabold mb-14 text-primary">
-          매출 구조 설계: <span className="text-accent">내원→결제→재방문 퍼널</span>
-        </h2>
-
-        <div className="relative mb-14 overflow-x-auto pb-2">
-          <div className="flex items-start justify-between min-w-[650px] relative">
-            <div className="absolute top-[6px] left-0 right-0 h-[2px] bg-gradient-to-r from-accent via-accent/40 to-border" />
-            {steps.map((s, i) => (
-              <div key={i} className="flex flex-col items-center relative z-10">
-                <div className="w-3.5 h-3.5 rounded-full bg-accent shrink-0 shadow-sm" />
-                <p className="font-semibold text-[13px] mt-2.5 text-primary/80">{s.label}</p>
-                <p className="text-[11px] text-primary-light">{s.sub}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {strategies.map((s, i) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+          {allServices.map((s, i) => (
             <Card key={i} className="p-5">
-              <div className="flex items-center gap-3 mb-3 pb-3 border-b border-border">
-                <IconBox>{s.icon}</IconBox>
-                <h3 className="font-bold text-sm text-primary">{s.title}</h3>
-              </div>
-              <ul className="space-y-1.5">
+              <div className="mb-3"><IconBox color={s.color}>{s.icon}</IconBox></div>
+              <h3 className="font-bold text-[14px] text-primary mb-2">{s.title}</h3>
+              <ul className="space-y-1">
                 {s.items.map((item, j) => (
-                  <li key={j} className="flex items-start gap-2 text-[13px] text-primary-light">
-                    <IconCheck className="w-3.5 h-3.5 text-accent mt-[2px] shrink-0" />
-                    {item}
+                  <li key={j} className="flex items-start gap-1.5 text-[12px] text-primary-light">
+                    <IconCheck className="w-3 h-3 text-emerald mt-0.5 shrink-0" />{item}
                   </li>
                 ))}
               </ul>
@@ -635,94 +541,145 @@ function Funnel() {
   );
 }
 
-/* ─── DIFFERENTIATION ─── */
-function Differentiation() {
-  const points = [
-    { icon: <IconHome className="w-5 h-5" />, title: "실제 병원 운영 경험을 바탕으로 한", desc: "현실적이고 검증된 전략" },
-    { icon: <IconChart className="w-5 h-5" />, title: "직감에 의존하지 않는", desc: "차트·결제 데이터 기반 의사결정" },
-    { icon: <IconBriefcase className="w-5 h-5" />, title: "단순한 트래픽 노출을 넘어선", desc: "'결제 중심'의 최적화된 설계" },
-    { icon: <IconUser className="w-5 h-5" />, title: "마케팅 인력 부담을 줄이는", desc: "1인 의원 최적화 실행 구조" },
+/* ─── FUNNEL ─── */
+function Funnel() {
+  const steps: { icon: React.ReactNode; label: string; sub: string; color: "accent" | "warm" | "emerald" | "rose" | "violet" }[] = [
+    { icon: <IconMagnet className="w-5 h-5" />, label: "인지/흥미", sub: "노출", color: "violet" },
+    { icon: <IconGlobe className="w-5 h-5" />, label: "유입", sub: "문의/예약", color: "accent" },
+    { icon: <IconHome className="w-5 h-5" />, label: "내원", sub: "방문 경험", color: "accent" },
+    { icon: <IconChat className="w-5 h-5" />, label: "상담", sub: "패키지 제안", color: "warm" },
+    { icon: <IconCreditCard className="w-5 h-5" />, label: "결제", sub: "매출 전환", color: "emerald" },
+    { icon: <IconClipboard className="w-5 h-5" />, label: "사후관리", sub: "만족도 제고", color: "emerald" },
+    { icon: <IconRefresh className="w-5 h-5" />, label: "재방문", sub: "리뷰/추천", color: "warm" },
   ];
+
   return (
-    <section id="difference" className="py-20 sm:py-28">
+    <section id="funnel" className="py-20 sm:py-28">
       <div className="max-w-6xl mx-auto px-5">
-        <SectionLabel>DIFFERENTIATION</SectionLabel>
+        <SectionLabel center>SALES STRUCTURE FUNNEL</SectionLabel>
+        <h2 className="text-3xl sm:text-4xl font-extrabold mb-14 text-primary text-center">
+          매출 구조 설계: <span className="text-accent">내원→결제→재방문 퍼널</span>
+        </h2>
+
+        <div className="relative overflow-x-auto pb-4">
+          <div className="flex gap-3 min-w-[800px]">
+            {steps.map((s, i) => (
+              <div key={i} className="flex-1 relative">
+                <Card className="p-4 text-center relative z-10">
+                  <div className="flex justify-center mb-2"><IconBox size="sm" color={s.color}>{s.icon}</IconBox></div>
+                  <p className="font-bold text-[13px] text-primary">{s.label}</p>
+                  <p className="text-[11px] text-primary-light">{s.sub}</p>
+                </Card>
+                {i < steps.length - 1 && (
+                  <div className="absolute top-1/2 -right-2.5 z-20 text-accent">
+                    <IconArrowRight className="w-4 h-4" />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {([
+            { icon: <IconMagnet className="w-5 h-5" />, title: "유입 강화", items: ["키워드 콘텐츠 배포", "지역 커뮤니티 장악", "인스타 맞춤 광고"], color: "violet" as const },
+            { icon: <IconChat className="w-5 h-5" />, title: "전환율 향상", items: ["카카오톡 채널 세팅", "고효율 상담 스크립트"], color: "accent" as const },
+            { icon: <IconCreditCard className="w-5 h-5" />, title: "결제 최적화", items: ["객단가 상승 패키지 구성", "전환율 극대화 가격전략"], color: "emerald" as const },
+            { icon: <IconRefresh className="w-5 h-5" />, title: "재방문 유도", items: ["자연유입 증가 리뷰 설계", "자동화된 리콜 메시지"], color: "warm" as const },
+          ]).map((s, i) => (
+            <Card key={i} className="p-5">
+              <div className="flex items-center gap-3 mb-3 pb-3 border-b border-border">
+                <IconBox color={s.color}>{s.icon}</IconBox>
+                <h3 className="font-bold text-sm text-primary">{s.title}</h3>
+              </div>
+              <ul className="space-y-1.5">
+                {s.items.map((item, j) => (
+                  <li key={j} className="flex items-start gap-2 text-[13px] text-primary-light">
+                    <IconCheck className="w-3.5 h-3.5 text-accent mt-[2px] shrink-0" />{item}
+                  </li>
+                ))}
+              </ul>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── DIFFERENTIATION + CONSULTING (합침) ─── */
+function WhyUs() {
+  const points: { icon: React.ReactNode; title: string; desc: string; color: "emerald" | "accent" | "warm" | "violet" }[] = [
+    { icon: <IconHome className="w-5 h-5" />, title: "현실적이고 검증된 전략", desc: "실제 병원 운영 경험을 바탕으로 한 전략 수립", color: "emerald" },
+    { icon: <IconChart className="w-5 h-5" />, title: "데이터 기반 의사결정", desc: "차트·결제 데이터로 직감이 아닌 근거 기반 운영", color: "accent" },
+    { icon: <IconBriefcase className="w-5 h-5" />, title: "'결제 중심' 최적화 설계", desc: "단순 트래픽이 아닌 실제 매출로 이어지는 구조", color: "warm" },
+    { icon: <IconUser className="w-5 h-5" />, title: "1인 의원 최적화 실행", desc: "마케팅 인력 부담 없이 운영 가능한 구조 설계", color: "violet" },
+  ];
+  const consulting: { icon: React.ReactNode; title: string; desc: string; color: "accent" | "warm" | "emerald" | "violet" }[] = [
+    { icon: <IconTarget className="w-5 h-5" />, title: "병원 상권 분석", desc: "유동/상주/경쟁 밀도 기반 타겟 정의", color: "accent" },
+    { icon: <IconSearch className="w-5 h-5" />, title: "경쟁 병원 분석", desc: "가격·장비·콘텐츠 비교 리포트 제공", color: "violet" },
+    { icon: <IconClipboard className="w-5 h-5" />, title: "시술 구성 전략", desc: "고가 리프팅 중심 효율적 패키지화", color: "warm" },
+    { icon: <IconPencil className="w-5 h-5" />, title: "이벤트 리디자인", desc: "시즌 및 수요 탄력 맞춤형 기획", color: "emerald" },
+  ];
+
+  return (
+    <section id="difference" className="py-20 sm:py-28 bg-bg-alt">
+      <div className="max-w-6xl mx-auto px-5">
+        {/* Differentiation */}
+        <SectionLabel>WHY BLANC SOCIETY</SectionLabel>
         <h2 className="text-3xl sm:text-4xl font-extrabold mb-10 text-primary">
           블랑 소사이어티가 <span className="text-accent">다른 이유</span>
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-16">
           {points.map((p, i) => (
-            <Card key={i} className="p-6 sm:p-7 flex items-start gap-4">
-              <IconBox>{p.icon}</IconBox>
+            <div key={i} className="flex items-start gap-4 p-6 rounded-2xl bg-white border border-border shadow-sm">
+              <IconBox size="lg" color={p.color}>{p.icon}</IconBox>
               <div>
-                <p className="text-primary-light text-sm mb-1">{p.title}</p>
-                <p className="font-bold text-base text-primary">{p.desc}</p>
+                <p className="font-bold text-base text-primary mb-1">{p.title}</p>
+                <p className="text-sm text-primary-light">{p.desc}</p>
               </div>
-            </Card>
+            </div>
           ))}
         </div>
-      </div>
-    </section>
-  );
-}
 
-/* ─── CONSULTING ─── */
-function Consulting() {
-  const items = [
-    { icon: <IconTarget className="w-5 h-5" />, title: "병원 상권 분석", desc: "유동 / 상주 / 경쟁 밀도 기반 타겟 정의" },
-    { icon: <IconSearch className="w-5 h-5" />, title: "경쟁 병원 포지셔닝 분석", desc: "가격·장비·콘텐츠 비교 리포트 제공" },
-    { icon: <IconClipboard className="w-5 h-5" />, title: "장비 / 시술 구성 전략", desc: "고가 리프팅축 중심의 효율적인 패키지화" },
-    { icon: <IconPencil className="w-5 h-5" />, title: "이벤트 구조 리디자인", desc: "시즌 및 수요 탄력을 반영한 맞춤형 기획" },
-  ];
-  return (
-    <section className="py-20 sm:py-28 bg-bg-alt">
-      <div className="max-w-6xl mx-auto px-5">
-        <SectionLabel>ADDITIONAL CONSULTING</SectionLabel>
-        <h2 className="text-3xl sm:text-4xl font-extrabold mb-10 text-primary">
+        {/* Consulting */}
+        <h3 className="text-2xl font-extrabold mb-6 text-primary">
           단순 광고를 넘어선 <span className="text-accent">추가 컨설팅</span>
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-          {items.map((item, i) => (
-            <Card key={i} className="p-6 flex items-start gap-3.5">
-              <IconBox>{item.icon}</IconBox>
-              <div>
-                <h3 className="font-bold text-[15px] mb-0.5 text-primary">{item.title}</h3>
-                <p className="text-[13px] text-primary-light">{item.desc}</p>
-              </div>
+        </h3>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          {consulting.map((c, i) => (
+            <Card key={i} className="p-5 text-center">
+              <div className="flex justify-center mb-3"><IconBox color={c.color}>{c.icon}</IconBox></div>
+              <h4 className="font-bold text-sm text-primary mb-1">{c.title}</h4>
+              <p className="text-[12px] text-primary-light">{c.desc}</p>
             </Card>
           ))}
         </div>
-        <Card className="p-5 flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
-          <p className="text-accent font-bold text-sm">제공 방식</p>
+        <div className="bg-white rounded-xl border border-border p-4 flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
+          <span className="text-accent font-bold text-sm shrink-0">제공 방식</span>
           <span className="hidden sm:inline text-border">|</span>
           <p className="text-primary-light text-sm">초기 2주 진단 리포트 제공 + 월간 성과 리뷰 미팅 진행</p>
-        </Card>
+        </div>
       </div>
     </section>
   );
 }
 
-/* ─── CLOSING ─── */
+/* ─── CLOSING + CTA ─── */
 function Closing() {
   return (
-    <section className="py-20 sm:py-28">
-      <div className="max-w-4xl mx-auto px-5 text-center">
-        <SectionLabel><span className="mx-auto">CONCLUSION &amp; NEXT STEP</span></SectionLabel>
-        <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight mt-6 mb-4 text-primary">
-          마케팅의 본질은 결국 하나입니다.
-          <br />
-          <span className="text-accent">&apos;환자가 실제로 늘어나느냐&apos;</span>
+    <section className="py-24 sm:py-32 bg-gradient-to-br from-[#1e293b] via-accent-dark to-[#7c3aed] text-white text-center relative overflow-hidden">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-white/[0.03] blur-[100px]" />
+      <div className="relative max-w-3xl mx-auto px-5">
+        <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight mb-4">
+          마케팅의 본질은 결국 하나입니다.<br />&apos;환자가 실제로 늘어나느냐&apos;
         </h2>
-        <p className="text-primary-light leading-relaxed mt-4 mb-3 text-[15px]">
-          블랑 소사이어티는 그 결과를 숫자로 증명해왔습니다.
+        <p className="text-white/60 leading-relaxed mt-4 mb-3 text-[15px]">블랑 소사이어티는 그 결과를 숫자로 증명해왔습니다.</p>
+        <p className="text-white/70 leading-relaxed mb-10 text-[15px]">
+          원장님 병원의 상황에 맞는 <strong className="text-white">맞춤 전략과 상권 분석</strong>을 함께 제안드리겠습니다.
         </p>
-        <p className="text-primary-light leading-relaxed mb-10 text-[15px]">
-          원장님 병원의 상황에 맞는{" "}
-          <strong className="text-primary">맞춤 전략과 상권 분석</strong>을 함께 제안드리겠습니다.
-        </p>
-        <a href="#contact" className="inline-flex items-center gap-2 px-8 py-4 bg-accent text-white font-bold rounded-full hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/20 transition-all">
-          무료 상담 신청하기
-          <IconArrowRight />
+        <a href="#contact" className="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary font-bold rounded-full hover:-translate-y-0.5 hover:shadow-xl transition-all">
+          무료 상담 신청하기 <IconArrowRight />
         </a>
       </div>
     </section>
@@ -732,55 +689,45 @@ function Closing() {
 /* ─── CONTACT ─── */
 function Contact() {
   return (
-    <section id="contact" className="py-20 sm:py-28 bg-bg-alt">
-      <div className="max-w-2xl mx-auto px-5">
-        <SectionLabel>CONTACT</SectionLabel>
-        <h2 className="text-3xl sm:text-4xl font-extrabold mb-10 text-primary">
-          <span className="text-accent">상담 문의</span>
-        </h2>
-
-        <Card className="p-7 sm:p-9">
-          <div className="flex flex-col sm:flex-row gap-6 sm:gap-8">
-            <div className="flex-1">
-              <p className="text-primary-light text-sm mb-3">편하게 문의 주시면 빠르게 검토 후 안내드리겠습니다.</p>
-              <p className="font-bold text-base text-primary">블랑 소사이어티</p>
-              <p className="text-primary-light text-sm">대표 정혜원 드림</p>
-            </div>
-            <div className="space-y-3">
-              <a href="mailto:theblanc.society@gmail.com" className="flex items-center gap-3 text-primary/70 hover:text-accent transition text-sm">
-                <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center">
-                  <IconMail className="w-4 h-4 text-accent" />
-                </div>
+    <section id="contact" className="py-20 sm:py-28">
+      <div className="max-w-5xl mx-auto px-5">
+        <div className="grid lg:grid-cols-[1fr_1.3fr] gap-10 items-start">
+          <div className="lg:sticky lg:top-24">
+            <SectionLabel>CONTACT</SectionLabel>
+            <h2 className="text-3xl sm:text-4xl font-extrabold mb-6 text-primary"><span className="text-accent">상담 문의</span></h2>
+            <p className="text-primary-light text-sm mb-8 leading-relaxed">편하게 문의 주시면 빠르게 검토 후 안내드리겠습니다.</p>
+            <div className="space-y-4 mb-8">
+              <a href="mailto:theblanc.society@gmail.com" className="flex items-center gap-3 text-primary hover:text-accent transition text-sm">
+                <div className="w-10 h-10 rounded-xl bg-accent-bg flex items-center justify-center"><IconMail className="w-5 h-5 text-accent" /></div>
                 theblanc.society@gmail.com
               </a>
-              <a href="tel:010-8143-7018" className="flex items-center gap-3 text-primary/70 hover:text-accent transition text-sm">
-                <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center">
-                  <IconPhoneCall className="w-4 h-4 text-accent" />
-                </div>
+              <a href="tel:010-8143-7018" className="flex items-center gap-3 text-primary hover:text-accent transition text-sm">
+                <div className="w-10 h-10 rounded-xl bg-accent-bg flex items-center justify-center"><IconPhoneCall className="w-5 h-5 text-accent" /></div>
                 010-8143-7018
               </a>
             </div>
+            <div className="border-t border-border pt-6">
+              <p className="font-bold text-base text-primary">블랑 소사이어티</p>
+              <p className="text-primary-light text-sm">대표 정혜원 드림</p>
+            </div>
           </div>
 
-          <form
-            className="mt-8 pt-7 border-t border-border space-y-4"
-            onSubmit={(e) => { e.preventDefault(); alert("문의가 접수되었습니다. 빠르게 연락드리겠습니다."); }}
-          >
-            <h3 className="font-bold text-[15px] mb-3 text-primary">상담 신청</h3>
-            <div className="grid sm:grid-cols-2 gap-3">
-              <input type="text" placeholder="병원명" required className="w-full px-4 py-3 bg-bg-alt border border-border rounded-xl text-sm text-primary focus:outline-none focus:border-accent/50 transition placeholder:text-muted/50" />
-              <input type="text" placeholder="원장님 성함" required className="w-full px-4 py-3 bg-bg-alt border border-border rounded-xl text-sm text-primary focus:outline-none focus:border-accent/50 transition placeholder:text-muted/50" />
-            </div>
-            <div className="grid sm:grid-cols-2 gap-3">
-              <input type="tel" placeholder="연락처" required className="w-full px-4 py-3 bg-bg-alt border border-border rounded-xl text-sm text-primary focus:outline-none focus:border-accent/50 transition placeholder:text-muted/50" />
-              <input type="text" placeholder="병원 위치 (시/구)" className="w-full px-4 py-3 bg-bg-alt border border-border rounded-xl text-sm text-primary focus:outline-none focus:border-accent/50 transition placeholder:text-muted/50" />
-            </div>
-            <textarea placeholder="궁금하신 내용이나 현재 고민을 자유롭게 적어주세요" rows={4} className="w-full px-4 py-3 bg-bg-alt border border-border rounded-xl text-sm text-primary focus:outline-none focus:border-accent/50 transition placeholder:text-muted/50 resize-none" />
-            <button type="submit" className="w-full py-3.5 bg-accent text-white font-bold text-sm rounded-full hover:bg-accent-light transition">
-              상담 신청하기
-            </button>
-          </form>
-        </Card>
+          <Card className="p-7 sm:p-9">
+            <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); alert("문의가 접수되었습니다. 빠르게 연락드리겠습니다."); }}>
+              <h3 className="font-extrabold text-lg mb-4 text-primary">상담 신청</h3>
+              <div className="grid sm:grid-cols-2 gap-3">
+                <input type="text" placeholder="병원명" required className="w-full px-4 py-3 bg-bg-alt border border-border rounded-xl text-sm text-primary focus:outline-none focus:border-accent/50 transition placeholder:text-muted/50" />
+                <input type="text" placeholder="원장님 성함" required className="w-full px-4 py-3 bg-bg-alt border border-border rounded-xl text-sm text-primary focus:outline-none focus:border-accent/50 transition placeholder:text-muted/50" />
+              </div>
+              <div className="grid sm:grid-cols-2 gap-3">
+                <input type="tel" placeholder="연락처" required className="w-full px-4 py-3 bg-bg-alt border border-border rounded-xl text-sm text-primary focus:outline-none focus:border-accent/50 transition placeholder:text-muted/50" />
+                <input type="text" placeholder="병원 위치 (시/구)" className="w-full px-4 py-3 bg-bg-alt border border-border rounded-xl text-sm text-primary focus:outline-none focus:border-accent/50 transition placeholder:text-muted/50" />
+              </div>
+              <textarea placeholder="궁금하신 내용이나 현재 고민을 자유롭게 적어주세요" rows={5} className="w-full px-4 py-3 bg-bg-alt border border-border rounded-xl text-sm text-primary focus:outline-none focus:border-accent/50 transition placeholder:text-muted/50 resize-none" />
+              <button type="submit" className="w-full py-3.5 bg-accent text-white font-bold text-sm rounded-full hover:bg-accent-dark transition">상담 신청하기</button>
+            </form>
+          </Card>
+        </div>
       </div>
     </section>
   );
@@ -792,9 +739,7 @@ function Footer() {
     <footer className="py-8 border-t border-border bg-bg-alt">
       <div className="max-w-6xl mx-auto px-5 flex flex-col sm:flex-row items-center justify-between gap-3">
         <Image src="/images/logo-text-white-cropped.png" alt="BLANC SOCIETY" width={1523} height={188} className="invert opacity-50 h-5 w-auto" />
-        <p className="text-[11px] text-primary-light">
-          &copy; {new Date().getFullYear()} BLANC SOCIETY. All rights reserved.
-        </p>
+        <p className="text-[11px] text-primary-light">&copy; {new Date().getFullYear()} BLANC SOCIETY. All rights reserved.</p>
       </div>
     </footer>
   );
@@ -811,11 +756,9 @@ export default function Home() {
         <Problem />
         <Results />
         <CaseStudy />
-        <KeyMessage />
         <Service />
         <Funnel />
-        <Differentiation />
-        <Consulting />
+        <WhyUs />
         <Closing />
         <Contact />
       </main>
