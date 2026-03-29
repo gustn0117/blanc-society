@@ -200,7 +200,7 @@ function Nav() {
     { href: "#contact", label: "문의" },
   ];
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-xl border-b border-border">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-xl border-b border-border shadow-sm">
       <div className="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
         <a href="#" className="flex items-center">
           <Image src="/images/logo-text-white-cropped.png" alt="BLANC SOCIETY" width={1523} height={188} className="invert h-7 w-auto" />
@@ -208,16 +208,16 @@ function Nav() {
 
         <div className="hidden lg:flex items-center gap-7">
           {links.map((l) => (
-            <a key={l.href} href={l.href} className="text-[13px] text-muted hover:text-primary transition-colors">
+            <a key={l.href} href={l.href} className="text-[13px] text-primary-light hover:text-accent transition-colors font-medium">
               {l.label}
             </a>
           ))}
-          <a href="#contact" className="ml-2 px-5 py-2 text-[13px] font-semibold rounded-full bg-accent text-white hover:bg-accent-light transition">
+          <a href="#contact" className="ml-2 px-5 py-2 text-[13px] font-semibold rounded-full bg-accent text-white hover:bg-accent-dark transition">
             상담 문의
           </a>
         </div>
 
-        <button className="lg:hidden text-muted" onClick={() => setOpen(!open)} aria-label="메뉴">
+        <button className="lg:hidden text-primary-light" onClick={() => setOpen(!open)} aria-label="메뉴">
           <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2">
             {open ? <path d="M6 6l10 10M6 16L16 6" /> : <path d="M4 6h14M4 11h14M4 16h14" />}
           </svg>
@@ -225,9 +225,9 @@ function Nav() {
       </div>
 
       {open && (
-        <div className="lg:hidden bg-white/95 backdrop-blur-xl border-t border-border px-5 py-4 space-y-2">
+        <div className="lg:hidden bg-white/98 backdrop-blur-xl border-t border-border px-5 py-4 space-y-2">
           {links.map((l) => (
-            <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="block text-sm text-muted hover:text-primary py-1.5">
+            <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="block text-sm text-primary-light hover:text-accent py-1.5 font-medium">
               {l.label}
             </a>
           ))}
@@ -244,8 +244,8 @@ function Nav() {
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex items-center gap-3 mb-4">
-      <div className="w-8 h-[2px] bg-accent" />
-      <span className="text-[11px] font-medium tracking-[0.2em] text-accent uppercase">
+      <div className="w-8 h-[2px] bg-accent rounded-full" />
+      <span className="text-[12px] font-semibold tracking-[0.15em] text-accent uppercase">
         {children}
       </span>
     </div>
@@ -255,7 +255,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 /* ─── CARD ─── */
 function Card({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={`bg-card border border-border rounded-2xl shadow-sm ${className}`}>
+    <div className={`bg-card border border-border rounded-2xl shadow-[0_1px_3px_rgba(0,0,0,0.06)] hover:shadow-md transition-shadow ${className}`}>
       {children}
     </div>
   );
@@ -264,7 +264,7 @@ function Card({ children, className = "" }: { children: React.ReactNode; classNa
 /* ─── ICON BOX ─── */
 function IconBox({ children }: { children: React.ReactNode }) {
   return (
-    <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center text-accent shrink-0">
+    <div className="w-10 h-10 rounded-xl bg-accent-bg flex items-center justify-center text-accent shrink-0">
       {children}
     </div>
   );
@@ -273,13 +273,14 @@ function IconBox({ children }: { children: React.ReactNode }) {
 /* ─── HERO ─── */
 function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center pt-16 bg-gradient-to-b from-bg-alt to-bg">
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full bg-accent/[0.04] blur-[120px]" />
+    <section className="relative min-h-screen flex items-center pt-16 bg-gradient-to-br from-[#f8faff] via-white to-[#f0f4ff]">
+      <div className="absolute top-1/4 right-0 w-[400px] h-[400px] rounded-full bg-accent/[0.06] blur-[100px]" />
+      <div className="absolute bottom-1/4 left-0 w-[300px] h-[300px] rounded-full bg-[#818cf8]/[0.04] blur-[80px]" />
 
       <div className="relative max-w-6xl mx-auto px-5 py-20 w-full">
         <SectionLabel>PREMIUM MARKETING PROPOSAL</SectionLabel>
 
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.2] mt-6 mb-6 text-primary">
+        <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold leading-[1.25] mt-6 mb-6 text-primary">
           노출이 아니라,
           <br />
           <span className="text-accent">매출이 올라가는 구조</span>를
@@ -287,18 +288,18 @@ function Hero() {
           설계합니다
         </h1>
 
-        <p className="text-muted text-base sm:text-lg max-w-lg mt-4 mb-10 leading-relaxed">
+        <p className="text-primary-light text-base sm:text-lg max-w-lg mt-4 mb-10 leading-relaxed">
           단순 광고가 아닌,
           <br />
           내원 → 결제 → 재방문 구조를 설계하는 피부과 전문 마케팅
         </p>
 
         <div className="flex flex-wrap gap-3">
-          <a href="#contact" className="inline-flex items-center gap-2 px-7 py-3.5 bg-accent text-white font-bold text-sm rounded-full hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/20 transition-all">
+          <a href="#contact" className="inline-flex items-center gap-2 px-7 py-3.5 bg-accent text-white font-bold text-sm rounded-full hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/25 transition-all">
             무료 상담 신청
             <IconArrowRight />
           </a>
-          <a href="#results" className="inline-flex items-center gap-2 px-6 py-3.5 text-sm text-accent border border-accent/25 rounded-full hover:bg-accent/5 transition">
+          <a href="#results" className="inline-flex items-center gap-2 px-6 py-3.5 text-sm text-accent font-medium border border-accent/30 rounded-full hover:bg-accent-bg transition">
             성과 확인하기
           </a>
         </div>
@@ -310,8 +311,8 @@ function Hero() {
             { label: "문의", value: "theblanc.society@gmail.com" },
           ].map((item) => (
             <div key={item.label}>
-              <p className="text-accent text-[11px] tracking-wide mb-1">{item.label}</p>
-              <p className="text-primary/70 text-sm">{item.value}</p>
+              <p className="text-accent text-[11px] font-semibold tracking-wide mb-1">{item.label}</p>
+              <p className="text-primary-light text-sm">{item.value}</p>
             </div>
           ))}
         </div>
@@ -332,14 +333,14 @@ function Concerns() {
     <section className="py-20 sm:py-28 bg-bg-alt">
       <div className="max-w-6xl mx-auto px-5">
         <SectionLabel>DIRECTOR&apos;S CONCERNS</SectionLabel>
-        <h2 className="text-3xl sm:text-4xl font-bold mb-10 text-primary">
+        <h2 className="text-3xl sm:text-4xl font-extrabold mb-10 text-primary">
           이런 <span className="text-accent">고민</span> 있으신가요?
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {items.map((item, i) => (
             <Card key={i} className="p-6 sm:p-7 flex items-start gap-4">
               <IconBox>{item.icon}</IconBox>
-              <p className="text-[15px] sm:text-base font-medium whitespace-pre-line leading-relaxed text-primary/85">
+              <p className="text-[15px] sm:text-base font-semibold whitespace-pre-line leading-relaxed text-primary">
                 {item.text}
               </p>
             </Card>
@@ -364,12 +365,12 @@ function Problem() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           <div>
             <SectionLabel>PROBLEM RECOGNITION</SectionLabel>
-            <h2 className="text-3xl sm:text-4xl font-bold leading-tight mb-5 text-primary">
+            <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight mb-5 text-primary">
               많은 병원이
               <br />
               <span className="text-accent">실패</span>하는 이유
             </h2>
-            <p className="text-muted leading-relaxed text-[15px]">
+            <p className="text-primary-light leading-relaxed text-[15px]">
               단순한 광고 지출이 아닌,
               <br />
               근본적인 매출 구조의 부재가
@@ -383,7 +384,7 @@ function Problem() {
                 <div className="w-9 h-9 rounded-full bg-accent/10 flex items-center justify-center text-accent text-sm font-bold shrink-0">
                   {i + 1}
                 </div>
-                <p className="text-[14px] sm:text-[15px] font-medium text-primary/80">{p}</p>
+                <p className="text-[14px] sm:text-[15px] font-medium text-primary">{p}</p>
               </Card>
             ))}
           </div>
@@ -405,7 +406,7 @@ function Results() {
     <section id="results" className="py-20 sm:py-28 bg-bg-alt">
       <div className="max-w-6xl mx-auto px-5">
         <SectionLabel>PROVEN RESULTS</SectionLabel>
-        <h2 className="text-3xl sm:text-4xl font-bold mb-10 text-primary">
+        <h2 className="text-3xl sm:text-4xl font-extrabold mb-10 text-primary">
           실제 성과: <span className="text-accent">데이터로 증명된 결과</span>
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -414,12 +415,12 @@ function Results() {
               <div className="flex justify-center mb-3">
                 <IconBox>{s.icon}</IconBox>
               </div>
-              <p className="text-[12px] text-accent tracking-wide mb-2">{s.label}</p>
-              <p className="text-4xl sm:text-5xl font-bold text-accent">
+              <p className="text-[12px] text-accent font-semibold tracking-wide mb-2">{s.label}</p>
+              <p className="text-4xl sm:text-5xl font-extrabold text-primary">
                 {s.value}
-                <span className="text-lg font-normal text-muted">{s.unit}</span>
+                <span className="text-lg font-normal text-primary-light">{s.unit}</span>
               </p>
-              <p className="text-sm text-muted mt-3 leading-relaxed">{s.desc}</p>
+              <p className="text-sm text-primary-light mt-3 leading-relaxed">{s.desc}</p>
             </Card>
           ))}
         </div>
@@ -434,7 +435,7 @@ function CaseStudy() {
     <section id="case" className="py-20 sm:py-28">
       <div className="max-w-6xl mx-auto px-5">
         <SectionLabel>CASE STUDY</SectionLabel>
-        <h2 className="text-3xl sm:text-4xl font-bold mb-10 text-primary">
+        <h2 className="text-3xl sm:text-4xl font-extrabold mb-10 text-primary">
           <span className="text-accent">프리미엄 확장</span> 사례
         </h2>
 
@@ -443,7 +444,7 @@ function CaseStudy() {
             <h3 className="text-base font-bold mb-4 pb-4 border-b border-border text-primary">BEFORE (초기 장비)</h3>
             <ul className="space-y-2.5">
               {["올리지오 (Oligio)", "인모드 (Inmode)", "슈링크 (Shurink)"].map((item) => (
-                <li key={item} className="flex items-center gap-2.5 text-muted text-sm">
+                <li key={item} className="flex items-center gap-2.5 text-primary-light text-sm">
                   <IconCheck className="w-3.5 h-3.5 text-accent" />
                   {item}
                 </li>
@@ -464,7 +465,7 @@ function CaseStudy() {
             <h3 className="text-base font-bold mb-4 pb-4 border-b border-border text-primary">AFTER (확장 장비)</h3>
             <div className="grid grid-cols-2 gap-2.5">
               {["울쎄라 (Ultherapy)", "티타늄 (Titanium)", "써마지 (Thermage)", "리팟 (Repot)"].map((item) => (
-                <div key={item} className="flex items-center gap-2 text-muted text-sm">
+                <div key={item} className="flex items-center gap-2 text-primary-light text-sm">
                   <span className="text-accent text-xs font-bold">+</span>
                   {item}
                 </div>
@@ -477,7 +478,7 @@ function CaseStudy() {
           <span className="text-[12px] font-bold text-accent bg-accent/10 px-3.5 py-1.5 rounded-full shrink-0">핵심 결과</span>
           <div>
             <p className="text-[15px] font-bold text-primary">고가 리프팅 중심 병원으로 포지셔닝 전환 성공</p>
-            <p className="text-[13px] text-muted mt-0.5">객단가 상승 + 브랜드 인식 상승 + 매출 구조 안정화</p>
+            <p className="text-[13px] text-primary-light mt-0.5">객단가 상승 + 브랜드 인식 상승 + 매출 구조 안정화</p>
           </div>
         </Card>
       </div>
@@ -491,7 +492,7 @@ function KeyMessage() {
     <section className="py-20 sm:py-28 bg-bg-alt">
       <div className="max-w-4xl mx-auto px-5 text-center">
         <SectionLabel><span className="mx-auto">KEY MESSAGE</span></SectionLabel>
-        <h2 className="text-3xl sm:text-4xl font-bold leading-tight mt-6 mb-6 text-primary">
+        <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight mt-6 mb-6 text-primary">
           우리는 &apos;환자를 늘리는 것&apos;이 아니라
           <br />
           <span className="text-accent">&apos;매출이 올라가는 구조&apos;</span>를 설계합니다
@@ -500,12 +501,12 @@ function KeyMessage() {
         <div className="grid sm:grid-cols-2 gap-4 mt-8">
           <Card className="p-6 sm:p-7 text-left">
             <div className="mb-3"><IconBox><IconFunnel className="w-5 h-5" /></IconBox></div>
-            <p className="text-muted text-sm mb-1">단순 노출이 아닌</p>
+            <p className="text-primary-light text-sm mb-1">단순 노출이 아닌</p>
             <p className="font-bold text-base text-primary">내원 → 결제 → 재방문<br />퍼널 구축</p>
           </Card>
           <Card className="p-6 sm:p-7 text-left">
             <div className="mb-3"><IconBox><IconChart className="w-5 h-5" /></IconBox></div>
-            <p className="text-muted text-sm mb-1">실제 병원 운영의</p>
+            <p className="text-primary-light text-sm mb-1">실제 병원 운영의</p>
             <p className="font-bold text-base text-primary">차트·결제 데이터를<br />기반으로 한 설계</p>
           </Card>
         </div>
@@ -539,7 +540,7 @@ function Service() {
       </div>
       <ul className="space-y-2">
         {s.items.map((item, j) => (
-          <li key={j} className="flex items-start gap-2 text-[13px] text-muted">
+          <li key={j} className="flex items-start gap-2 text-[13px] text-primary-light">
             <IconCheck className="w-3.5 h-3.5 text-accent mt-[2px] shrink-0" />
             {item}
           </li>
@@ -552,10 +553,10 @@ function Service() {
     <section id="service" className="py-20 sm:py-28">
       <div className="max-w-6xl mx-auto px-5">
         <SectionLabel>MARKETING SCOPE</SectionLabel>
-        <h2 className="text-3xl sm:text-4xl font-bold mb-3 text-primary">
+        <h2 className="text-3xl sm:text-4xl font-extrabold mb-3 text-primary">
           마케팅 진행 범위: <span className="text-accent">매출형 채널 운영</span>
         </h2>
-        <p className="text-muted text-sm mb-10">핵심은 유입이 아닌 결제 구조 설계입니다</p>
+        <p className="text-primary-light text-sm mb-10">핵심은 유입이 아닌 결제 구조 설계입니다</p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
           {services1.map(renderServiceCard)}
@@ -594,7 +595,7 @@ function Funnel() {
     <section id="funnel" className="py-20 sm:py-28 bg-bg-alt">
       <div className="max-w-6xl mx-auto px-5">
         <SectionLabel>SALES STRUCTURE FUNNEL</SectionLabel>
-        <h2 className="text-3xl sm:text-4xl font-bold mb-14 text-primary">
+        <h2 className="text-3xl sm:text-4xl font-extrabold mb-14 text-primary">
           매출 구조 설계: <span className="text-accent">내원→결제→재방문 퍼널</span>
         </h2>
 
@@ -605,7 +606,7 @@ function Funnel() {
               <div key={i} className="flex flex-col items-center relative z-10">
                 <div className="w-3.5 h-3.5 rounded-full bg-accent shrink-0 shadow-sm" />
                 <p className="font-semibold text-[13px] mt-2.5 text-primary/80">{s.label}</p>
-                <p className="text-[11px] text-muted">{s.sub}</p>
+                <p className="text-[11px] text-primary-light">{s.sub}</p>
               </div>
             ))}
           </div>
@@ -620,7 +621,7 @@ function Funnel() {
               </div>
               <ul className="space-y-1.5">
                 {s.items.map((item, j) => (
-                  <li key={j} className="flex items-start gap-2 text-[13px] text-muted">
+                  <li key={j} className="flex items-start gap-2 text-[13px] text-primary-light">
                     <IconCheck className="w-3.5 h-3.5 text-accent mt-[2px] shrink-0" />
                     {item}
                   </li>
@@ -646,7 +647,7 @@ function Differentiation() {
     <section id="difference" className="py-20 sm:py-28">
       <div className="max-w-6xl mx-auto px-5">
         <SectionLabel>DIFFERENTIATION</SectionLabel>
-        <h2 className="text-3xl sm:text-4xl font-bold mb-10 text-primary">
+        <h2 className="text-3xl sm:text-4xl font-extrabold mb-10 text-primary">
           블랑 소사이어티가 <span className="text-accent">다른 이유</span>
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -654,7 +655,7 @@ function Differentiation() {
             <Card key={i} className="p-6 sm:p-7 flex items-start gap-4">
               <IconBox>{p.icon}</IconBox>
               <div>
-                <p className="text-muted text-sm mb-1">{p.title}</p>
+                <p className="text-primary-light text-sm mb-1">{p.title}</p>
                 <p className="font-bold text-base text-primary">{p.desc}</p>
               </div>
             </Card>
@@ -677,7 +678,7 @@ function Consulting() {
     <section className="py-20 sm:py-28 bg-bg-alt">
       <div className="max-w-6xl mx-auto px-5">
         <SectionLabel>ADDITIONAL CONSULTING</SectionLabel>
-        <h2 className="text-3xl sm:text-4xl font-bold mb-10 text-primary">
+        <h2 className="text-3xl sm:text-4xl font-extrabold mb-10 text-primary">
           단순 광고를 넘어선 <span className="text-accent">추가 컨설팅</span>
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
@@ -686,7 +687,7 @@ function Consulting() {
               <IconBox>{item.icon}</IconBox>
               <div>
                 <h3 className="font-bold text-[15px] mb-0.5 text-primary">{item.title}</h3>
-                <p className="text-[13px] text-muted">{item.desc}</p>
+                <p className="text-[13px] text-primary-light">{item.desc}</p>
               </div>
             </Card>
           ))}
@@ -694,7 +695,7 @@ function Consulting() {
         <Card className="p-5 flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
           <p className="text-accent font-bold text-sm">제공 방식</p>
           <span className="hidden sm:inline text-border">|</span>
-          <p className="text-muted text-sm">초기 2주 진단 리포트 제공 + 월간 성과 리뷰 미팅 진행</p>
+          <p className="text-primary-light text-sm">초기 2주 진단 리포트 제공 + 월간 성과 리뷰 미팅 진행</p>
         </Card>
       </div>
     </section>
@@ -707,15 +708,15 @@ function Closing() {
     <section className="py-20 sm:py-28">
       <div className="max-w-4xl mx-auto px-5 text-center">
         <SectionLabel><span className="mx-auto">CONCLUSION &amp; NEXT STEP</span></SectionLabel>
-        <h2 className="text-3xl sm:text-4xl font-bold leading-tight mt-6 mb-4 text-primary">
+        <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight mt-6 mb-4 text-primary">
           마케팅의 본질은 결국 하나입니다.
           <br />
           <span className="text-accent">&apos;환자가 실제로 늘어나느냐&apos;</span>
         </h2>
-        <p className="text-muted leading-relaxed mt-4 mb-3 text-[15px]">
+        <p className="text-primary-light leading-relaxed mt-4 mb-3 text-[15px]">
           블랑 소사이어티는 그 결과를 숫자로 증명해왔습니다.
         </p>
-        <p className="text-muted leading-relaxed mb-10 text-[15px]">
+        <p className="text-primary-light leading-relaxed mb-10 text-[15px]">
           원장님 병원의 상황에 맞는{" "}
           <strong className="text-primary">맞춤 전략과 상권 분석</strong>을 함께 제안드리겠습니다.
         </p>
@@ -734,16 +735,16 @@ function Contact() {
     <section id="contact" className="py-20 sm:py-28 bg-bg-alt">
       <div className="max-w-2xl mx-auto px-5">
         <SectionLabel>CONTACT</SectionLabel>
-        <h2 className="text-3xl sm:text-4xl font-bold mb-10 text-primary">
+        <h2 className="text-3xl sm:text-4xl font-extrabold mb-10 text-primary">
           <span className="text-accent">상담 문의</span>
         </h2>
 
         <Card className="p-7 sm:p-9">
           <div className="flex flex-col sm:flex-row gap-6 sm:gap-8">
             <div className="flex-1">
-              <p className="text-muted text-sm mb-3">편하게 문의 주시면 빠르게 검토 후 안내드리겠습니다.</p>
+              <p className="text-primary-light text-sm mb-3">편하게 문의 주시면 빠르게 검토 후 안내드리겠습니다.</p>
               <p className="font-bold text-base text-primary">블랑 소사이어티</p>
-              <p className="text-muted text-sm">대표 정혜원 드림</p>
+              <p className="text-primary-light text-sm">대표 정혜원 드림</p>
             </div>
             <div className="space-y-3">
               <a href="mailto:theblanc.society@gmail.com" className="flex items-center gap-3 text-primary/70 hover:text-accent transition text-sm">
@@ -788,10 +789,10 @@ function Contact() {
 /* ─── FOOTER ─── */
 function Footer() {
   return (
-    <footer className="py-8 border-t border-border bg-white">
+    <footer className="py-8 border-t border-border bg-bg-alt">
       <div className="max-w-6xl mx-auto px-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-        <Image src="/images/logo-text-white-cropped.png" alt="BLANC SOCIETY" width={1523} height={188} className="invert opacity-60 h-5 w-auto" />
-        <p className="text-[11px] text-muted/50">
+        <Image src="/images/logo-text-white-cropped.png" alt="BLANC SOCIETY" width={1523} height={188} className="invert opacity-50 h-5 w-auto" />
+        <p className="text-[11px] text-primary-light">
           &copy; {new Date().getFullYear()} BLANC SOCIETY. All rights reserved.
         </p>
       </div>
