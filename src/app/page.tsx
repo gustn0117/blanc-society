@@ -289,7 +289,7 @@ function Hero() {
           <span className="text-[11px] font-semibold tracking-[0.2em] text-white/60 uppercase">PREMIUM MARKETING PROPOSAL</span>
           <div className="w-10 h-[1.5px] bg-white/40 rounded-full" />
         </div>
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.15] mb-8 text-white">
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-8 text-white">
           노출이 아니라,<br />
           <span className="bg-gradient-to-r from-blue-400 to-blue-300 bg-clip-text text-transparent">매출이 올라가는 구조</span>를 설계합니다
         </h1>
@@ -365,7 +365,7 @@ function Problem() {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
             <SectionLabel>PROBLEM RECOGNITION</SectionLabel>
-            <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight mb-6 text-primary">
+            <h2 className="text-3xl sm:text-4xl font-extrabold mb-6 text-primary">
               많은 병원이<br /><span className="text-accent">실패</span>하는 이유
             </h2>
             <p className="text-primary-light leading-relaxed text-[15px] mb-10">
@@ -527,7 +527,7 @@ function CaseStudy() {
 
             <div className="bg-gradient-to-br from-accent-bg to-white rounded-2xl p-8 border border-accent/10 mb-8">
               <h3 className="text-lg font-extrabold text-primary mb-3">핵심 결과</h3>
-              <p className="text-2xl sm:text-3xl font-extrabold text-accent leading-tight mb-6">고가 리프팅 중심 병원으로<br />포지셔닝 전환 성공</p>
+              <p className="text-2xl sm:text-3xl font-extrabold text-accent mb-6">고가 리프팅 중심 병원으로<br />포지셔닝 전환 성공</p>
               <div className="space-y-3">
                 {["객단가 상승으로 매출 구조 안정화", "프리미엄 브랜드 인식 확립", "고가 시술 중심 환자 유입 증가"].map((t) => (
                   <div key={t} className="flex items-start gap-2.5">
@@ -761,7 +761,7 @@ function Closing() {
             <IconStar className="w-6 h-6 text-warm" />
           </div>
         </div>
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight mb-6">
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-6">
           마케팅의 본질은 결국 하나입니다.<br /><span className="text-warm">&apos;환자가 실제로 늘어나느냐&apos;</span>
         </h2>
         <p className="text-white/50 leading-relaxed mt-6 mb-3 text-[15px]">블랑 소사이어티는 그 결과를 숫자로 증명해왔습니다.</p>
