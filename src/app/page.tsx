@@ -283,13 +283,13 @@ function Hero() {
         <div className="absolute inset-0 bg-black/70" />
       </div>
 
-      <div className="relative max-w-4xl mx-auto px-6 py-32 w-full text-center">
+      <div className="relative max-w-5xl mx-auto px-6 py-32 w-full text-center">
         <div className="flex items-center justify-center gap-3 mb-8">
           <div className="w-10 h-[1.5px] bg-white/40 rounded-full" />
           <span className="text-[11px] font-semibold tracking-[0.2em] text-white/60 uppercase">PREMIUM MARKETING PROPOSAL</span>
           <div className="w-10 h-[1.5px] bg-white/40 rounded-full" />
         </div>
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-8 text-white">
+        <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] font-extrabold mb-8 text-white lg:whitespace-nowrap">
           노출이 아니라,<br />
           <span className="bg-gradient-to-r from-blue-400 to-blue-300 bg-clip-text text-transparent">매출이 올라가는 구조</span>를 설계합니다
         </h1>
