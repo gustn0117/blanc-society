@@ -273,8 +273,8 @@ function Hero() {
       {/* Background image */}
       <div className="absolute inset-0">
         <Image
-          src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1920&q=80"
-          alt="Analytics dashboard"
+          src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&q=80"
+          alt="Data analytics"
           fill
           className="object-cover"
           sizes="100vw"
@@ -291,7 +291,7 @@ function Hero() {
         </div>
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.15] mb-8 text-white">
           노출이 아니라,<br />
-          <span className="bg-gradient-to-r from-blue-400 to-blue-300 bg-clip-text text-transparent">매출이 올라가는 구조</span>를<br />설계합니다
+          <span className="bg-gradient-to-r from-blue-400 to-blue-300 bg-clip-text text-transparent">매출이 올라가는 구조</span>를 설계합니다
         </h1>
         <p className="text-white/55 text-base sm:text-lg max-w-lg mx-auto mb-12 leading-relaxed">
           단순 광고가 아닌,<br />내원 → 결제 → 재방문 구조를 설계하는 피부과 전문 마케팅
