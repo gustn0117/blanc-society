@@ -273,8 +273,8 @@ function Hero() {
       {/* Background image */}
       <div className="absolute inset-0">
         <Image
-          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80"
-          alt="Modern building"
+          src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1920&q=80"
+          alt="Analytics dashboard"
           fill
           className="object-cover"
           sizes="100vw"
@@ -393,8 +393,8 @@ function Problem() {
           <div className="relative">
             <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl shadow-black/10">
               <Image
-                src="https://images.unsplash.com/photo-1519999482648-25049ddd37b1?w=1920&q=80"
-                alt="Modern city buildings at dusk"
+                src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=1920&q=80"
+                alt="Financial growth charts"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -695,8 +695,8 @@ function WhyUs() {
             <p className="text-primary-light text-sm leading-relaxed mb-8">실제 병원 운영 데이터를 기반으로 매출 구조를 설계합니다. 단순 광고 대행이 아닌, 함께 성장하는 파트너십을 지향합니다.</p>
             <div className="relative aspect-[16/10] rounded-2xl overflow-hidden shadow-xl">
               <Image
-                src="https://images.unsplash.com/photo-1573164574572-cb89e39749b4?w=1920&q=80"
-                alt="Business strategy meeting"
+                src="https://images.unsplash.com/photo-1599658880436-c61792e70672?w=1920&q=80"
+                alt="Data analysis on laptop"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -746,8 +746,8 @@ function Closing() {
     <section className="py-28 sm:py-36 text-white text-center relative overflow-hidden">
       <div className="absolute inset-0">
         <Image
-          src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1920&q=80"
-          alt="City skyline"
+          src="https://images.unsplash.com/photo-1666875753105-c63a6f3bdc86?w=1920&q=80"
+          alt="Data visualization"
           fill
           className="object-cover"
           sizes="100vw"
